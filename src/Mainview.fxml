@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Main"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
+<BorderPane fx:id="Bpmain" prefHeight="638.0" prefWidth="866.0" style="-fx-background-color: ffffff;" stylesheets="@button1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+   <top>
+      <HBox prefHeight="82.0" prefWidth="866.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="105.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@oxford.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="page1" mnemonicParsing="false" onMouseClicked="#page1" prefHeight="102.0" prefWidth="154.0" text="Dictionary">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#page2" prefHeight="102.0" prefWidth="154.0" text="Translate">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#page3" prefHeight="102.0" prefWidth="154.0" text="Study">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

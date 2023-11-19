@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Main extends Application{
     Button button;
+    double x,y;
 
 
     public static void main(String[] args) {
@@ -26,16 +28,20 @@ public class Main extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("Mainview.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
+
         root.setOnMousePressed(event -> {
-            root.getScene().getWindow().setX(event.getScreenX() - root.getScene().getWindow().getX());
-            root.getScene().getWindow().setY(event.getScreenY() - root.getScene().getWindow().getY());
+            x = event.getSceneX();
+            y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            primaryStage.setX(event.getScreenX()-x);
+            primaryStage.setY(event.getScreenY()-y);
         });
 
-        primaryStage.setScene(new Scene(root,873,648));
+        primaryStage.setScene(new Scene(root,866,638));
 
         primaryStage.setTitle("Dictionary");
         primaryStage.show();
-
 
 
     }
