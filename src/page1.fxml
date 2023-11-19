@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane prefHeight="538.0" prefWidth="866.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="page1">
    <children>
-      <Pane layoutX="14.0" layoutY="26.0" prefHeight="498.0" prefWidth="302.0" style="-fx-background-color: f2f2f2;">
+      <Pane layoutX="14.0" layoutY="26.0" prefHeight="498.0" prefWidth="251.0" style="-fx-background-color: f2f2f2;">
          <children>
-            <HBox prefHeight="115.0" prefWidth="302.0" style="-fx-background-color: #6198c1;" />
+            <HBox prefHeight="65.0" prefWidth="251.0" style="-fx-background-color: #6198c1;">
+               <children>
+                  <TextField fx:id="searchField" onKeyReleased="#searchFieldAction" prefHeight="66.0" prefWidth="253.0" promptText="Tra từ">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+               </children></HBox>
+            <VBox layoutY="64.0" prefHeight="434.0" prefWidth="251.0">
+               <children>
+                  <ListView fx:id="ListWords" prefHeight="439.0" prefWidth="251.0" />
+               </children>
+            </VBox>
          </children>
       </Pane>
+      <Label layoutX="328.0" layoutY="26.0" prefHeight="66.0" prefWidth="465.0" styleClass="lable-title" stylesheets="@page1.css" text="Nghĩa của từ">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <HBox layoutX="328.0" layoutY="85.0" prefHeight="35.0" prefWidth="69.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="25.0" styleClass="button-sound" stylesheets="@page1.css" />
+            <Label prefHeight="46.0" prefWidth="34.0" styleClass="lable-sound" stylesheets="@page1.css" text="  US" />
+         </children>
+      </HBox>
+      <HBox layoutX="399.0" layoutY="85.0" prefHeight="35.0" prefWidth="69.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="25.0" styleClass="button-sound" stylesheets="@page1.css" />
+            <Label prefHeight="46.0" prefWidth="34.0" styleClass="lable-sound" stylesheets="@page1.css" text="  UK" />
+         </children>
+      </HBox>
+      <Pane layoutX="328.0" layoutY="130.0" prefHeight="390.0" prefWidth="512.0" style="-fx-background-color: f3f3f3;" />
    </children>
 </Pane>

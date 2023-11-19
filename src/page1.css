@@ -1,0 +1,16 @@
+.lable-title{
+    -fx-text-fill: -title-color;
+    -fx-font-size: 19;
+    -fx-font-weight: bold;
+}
+.button-sound{
+        -fx-background-image: url('speak.png');
+        -fx-background-position: center;
+        -fx-background-repeat: no-repeat;
+}
+.lable-sound
+{
+    -fx-text-fill: -title-color;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+}

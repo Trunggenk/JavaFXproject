@@ -18,23 +18,23 @@
                   <Image url="@oxford.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="page1" mnemonicParsing="false" onMouseClicked="#page1" prefHeight="102.0" prefWidth="154.0" text="Dictionary">
+            <Button fx:id="page1" mnemonicParsing="false" onMouseClicked="#page1" prefHeight="102.0" prefWidth="154.0" styleClass="button-main" text="Dictionary">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#page2" prefHeight="102.0" prefWidth="154.0" text="Translate">
+            <Button mnemonicParsing="false" onMouseClicked="#page2" prefHeight="102.0" prefWidth="154.0" styleClass="button-main" text="Translate">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#page3" prefHeight="102.0" prefWidth="154.0" text="Study">
+            <Button mnemonicParsing="false" onMouseClicked="#page3" prefHeight="102.0" prefWidth="154.0" styleClass="button-main" text="Study">
                <font>
                   <Font size="19.0" />
                </font>
             </Button>
             <Pane prefHeight="95.0" prefWidth="87.0" />
-            <Label fx:id="exit">
+            <Label fx:id="exit" styleClass="label-exit">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>

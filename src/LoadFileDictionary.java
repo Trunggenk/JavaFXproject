@@ -17,10 +17,15 @@ public class LoadFileDictionary{
             System.out.println("Error");
         }
     }
-    public void addWord(String word, String meaning){
-        dic.put(word, meaning);
+    public void searchPrefix(String prefix) {
+        int i = 1;
+        for (String key : this.dic.keySet()) {
+            if (key.startsWith(prefix)) {
+                System.out.println(i + "\t|" + key + "\t\t|" + this.dic.get(key));
+                i++;
+            }
+        }
     }
-    public void editWord (){
 
-    }
+
 }

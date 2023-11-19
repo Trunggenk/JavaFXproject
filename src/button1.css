@@ -1,26 +1,23 @@
-.button
+.button-main
 {
     -fx-background-color : #ffffff;
     -fx-text-fill: #06086e;
 }
-.button:hover
+.button-main:hover
 {
     -fx-background-color : #a2cdff ;
 }
-.button:pressed
+.button-main:pressed
 {
     -fx-background-color : #73A3EF;
     -fx-underline: true;
 }
-.label
-{
 
-}
-.label:hover
+.label-exit:hover
 {
     -fx-background-color : #dc4335;
 }
-.label:pressed
+.label-exit:pressed
 {
     -fx-background-color : #ffffff;
 }
