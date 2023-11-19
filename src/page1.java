@@ -82,7 +82,7 @@ public class page1 {
         soundUS.setOnAction(event -> {
             String selectedWord = ListWords.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
-                String encodedWord = selectedWord.replace(" ", "%20");
+
                 String urlStr = "https://ssl.gstatic.com/dictionary/static/sounds/oxford/" + selectedWord + "--_us_1.mp3";
                 try {
                     URL url = new URL(urlStr);
@@ -93,14 +93,19 @@ public class page1 {
                         Media sound = new Media(urlStr);
                         MediaPlayer mediaPlayer = new MediaPlayer(sound);
                         mediaPlayer.play();
-                    } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
+                    } else  {
                         throw new Exception("File not found");
+
                     }
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Lỗi");
                     alert.setHeaderText(null);
-                    alert.setContentText("Âm thanh hiện không khả dụng");
+                    if (e.getMessage().equals("File not found")) {
+                        alert.setContentText("File âm thanh không tồn tại");
+                    } else {
+                        alert.setContentText("Âm thanh hiện không khả dụng");
+                    }
                     alert.showAndWait();
                 }
             }
@@ -108,7 +113,7 @@ public class page1 {
         soundUK.setOnAction(event -> {
             String selectedWord = ListWords.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
-                String encodedWord = selectedWord.replace(" ", "%20");
+
                 String urlStr = "https://ssl.gstatic.com/dictionary/static/sounds/oxford/" + encodedWord + "--_gb_1.mp3";
                 try {
                     URL url = new URL(urlStr);
