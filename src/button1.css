@@ -12,3 +12,15 @@
     -fx-background-color : #73A3EF;
     -fx-underline: true;
 }
+.label
+{
+
+}
+.label:hover
+{
+    -fx-background-color : #dc4335;
+}
+.label:pressed
+{
+    -fx-background-color : #ffffff;
+}

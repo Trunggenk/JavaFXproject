@@ -3,9 +3,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
+import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +20,9 @@ public class MainController implements Initializable
 
     @FXML
     private Button page1;
+
+    @FXML
+    private Label exit;
 
     @FXML
     void page1(MouseEvent event) {
@@ -50,6 +55,10 @@ public class MainController implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //exit button
+        exit.setOnMouseClicked(event -> {
+            System.exit(0);
+        });
 
     }
 }
