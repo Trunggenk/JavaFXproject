@@ -1,4 +1,4 @@
-import javafx.application.Application;
+/* import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -34,6 +34,7 @@ public class HashMapToListViewExample  extends Application {
         }
 
         ObservableList<String> dataList = FXCollections.observableArrayList(dataMap.keySet());
+        FXCollections.sort(dataList);
 
         ListView<String> listView = new ListView<>(dataList);
 
@@ -41,8 +42,11 @@ public class HashMapToListViewExample  extends Application {
         searchField.setPromptText("Search...");
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            ObservableList<String> filteredData = dataList.filtered(item -> item.toLowerCase().contains(newValue.toLowerCase()));
-            listView.setItems(filteredData);
+            if (newValue != null) {
+                ObservableList<String> filteredData = FXCollections.observableArrayList(dataList.filtered(item -> item != null && item.toLowerCase().startsWith(newValue.toLowerCase())));
+                FXCollections.sort(filteredData);
+                listView.setItems(filteredData);
+            }
         });
 
         VBox root = new VBox(searchField, listView);
@@ -55,3 +59,5 @@ public class HashMapToListViewExample  extends Application {
     }
 
 }
+
+ */
