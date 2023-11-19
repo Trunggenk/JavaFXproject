@@ -12,7 +12,8 @@ import javafx.scene.web.WebView;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.HttpURLConnection;
-import java.util.HashMap;
+import java.util.*;
+import javafx.scene.control.Alert.AlertType;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,9 +22,6 @@ import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
 
 public class page1 {
 
@@ -39,12 +37,22 @@ public class page1 {
 
     @FXML
     private Button soundUS;
-
+    @FXML
+    private Button editButton;
+    @FXML
+    private HTMLEditor htmledit;
+    @FXML
+    private Button saveButton;
+    @FXML
+    private ListView<?> recent;
+    private String currentWord;
 
     private ObservableList<String> dataList;
     private HashMap<String, String> dataMap;
 
     public void initialize() {
+        htmledit.setVisible(false);
+
         dataMap = new HashMap<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/eng_vie.txt"));
@@ -127,6 +135,7 @@ public class page1 {
             if (event.getCode() == KeyCode.ENTER) {
                 String word = searchField.getText();
                 if (dataMap.containsKey(word)) {
+                    currentWord= searchField.getText();
                     String htmlContent = dataMap.get(word);
                     webdif.getEngine().loadContent(htmlContent, "text/html");
                 } else {
@@ -138,7 +147,42 @@ public class page1 {
                 }
             }
         });
+
+
+
+        editButton.setOnAction(event -> {
+            String selectedWord = ListWords.getSelectionModel().getSelectedItem();
+            if (selectedWord == null) {
+                selectedWord = currentWord;
+            }
+            if (selectedWord != null) {
+                String htmlContent = dataMap.get(selectedWord);
+                htmledit.setHtmlText(htmlContent);
+                htmledit.setVisible(true);
+            }
+        });
+
+            saveButton.setOnAction(event -> {
+                String selectedWord = ListWords.getSelectionModel().getSelectedItem();
+                if (selectedWord == null) {
+                    selectedWord = currentWord;
+                }
+                if (selectedWord != null) {
+                    String newMeaning = htmledit.getHtmlText();
+                    dataMap.put(selectedWord, newMeaning);
+                    webdif.getEngine().loadContent(newMeaning, "text/html");
+                    htmledit.setVisible(false);
+
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Thông báo");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Sửa thành công");
+                    alert.showAndWait();
+                }
+            });
+
     }
+
 
     @FXML
     void searchFieldAction(KeyEvent event) {
