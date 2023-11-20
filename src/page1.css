@@ -32,3 +32,15 @@
     -fx-background-repeat: no-repeat;
 
 }
+.button-add
+{
+    -fx-background-image: url('add.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.button-remove
+{
+    -fx-background-image: url('remove.png');
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}

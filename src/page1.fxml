@@ -58,7 +58,9 @@
             <WebView fx:id="webdif" prefHeight="390.0" prefWidth="512.0" />
             <HTMLEditor fx:id="htmledit" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" prefHeight="390.0" prefWidth="512.0" />
          </children></Pane>
-      <Button fx:id="editButton" layoutX="725.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="34.0" styleClass="button-edit" stylesheets="@page1.css" />
-      <Button fx:id="saveButton" layoutX="776.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-save" stylesheets="@page1.css" />
+      <Button fx:id="editButton" layoutX="643.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="34.0" styleClass="button-edit" stylesheets="@page1.css" />
+      <Button fx:id="saveButton" layoutX="690.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-save" stylesheets="@page1.css" />
+      <Button fx:id="addButton" layoutX="741.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-add" stylesheets="@page1.css" />
+      <Button fx:id="removeButton" layoutX="792.0" layoutY="85.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="button-remove" stylesheets="@page1.css" />
    </children>
 </Pane>

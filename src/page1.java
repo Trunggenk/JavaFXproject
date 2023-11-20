@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
-
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.HttpURLConnection;
@@ -20,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.web.HTMLEditor;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 
@@ -45,6 +49,11 @@ public class page1 {
     private Button saveButton;
     @FXML
     private ListView<?> recent;
+    @FXML
+    private Button removeButton;
+    @FXML
+    private Button addButton;
+
     private String currentWord;
 
     private ObservableList<String> dataList;
@@ -80,6 +89,7 @@ public class page1 {
 
 
         soundUS.setOnAction(event -> {
+            String encodedWord = ListWords.getSelectionModel().getSelectedItem().replace(" ", "_");
             String selectedWord = ListWords.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
 
@@ -111,6 +121,7 @@ public class page1 {
             }
         });
         soundUK.setOnAction(event -> {
+            String encodedWord = ListWords.getSelectionModel().getSelectedItem().replace(" ", "_");
             String selectedWord = ListWords.getSelectionModel().getSelectedItem();
             if (selectedWord != null) {
 
@@ -167,6 +178,7 @@ public class page1 {
             }
         });
 
+
             saveButton.setOnAction(event -> {
                 String selectedWord = ListWords.getSelectionModel().getSelectedItem();
                 if (selectedWord == null) {
@@ -185,6 +197,76 @@ public class page1 {
                     alert.showAndWait();
                 }
             });
+        removeButton.setOnAction(event -> {
+            String selectedWord = ListWords.getSelectionModel().getSelectedItem();
+            if (selectedWord == null) {
+                selectedWord = currentWord;
+            }
+            if (selectedWord != null) {
+                dataMap.remove(selectedWord);
+                dataList.remove(selectedWord);
+                webdif.getEngine().loadContent("", "text/html");
+
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Thông báo");
+                alert.setHeaderText(null);
+                alert.setContentText("Xoá thành công");
+                alert.showAndWait();
+            }
+        });
+
+
+        addButton.setOnAction(event -> {
+            Stage newWordStage = new Stage();
+
+            Label titleLabel = new Label("Thêm từ mới"); // Tiêu đề
+
+            TextField newWordField = new TextField();
+            newWordField.setPromptText("Nhập từ mới");
+
+            HTMLEditor newWordMeaningEditor = new HTMLEditor();
+
+            Button saveNewWordButton = new Button("Lưu");
+            saveNewWordButton.setOnAction(saveEvent -> {
+                String newWord = newWordField.getText();
+                String newWordMeaning = newWordMeaningEditor.getHtmlText();
+
+                if (newWord != null && !newWord.isEmpty() && newWordMeaning != null && !newWordMeaning.isEmpty()) {
+                    dataMap.put(newWord, newWordMeaning);
+                    dataList.add(newWord);
+                    FXCollections.sort(dataList);
+                    newWordStage.close();
+                } else {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Lỗi");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vui lòng nhập từ và nghĩa của từ");
+                    alert.showAndWait();
+                }
+            });
+
+            VBox layout = new VBox(10);
+            layout.getChildren().addAll(titleLabel, newWordField, newWordMeaningEditor, saveNewWordButton); // Thêm tiêu đề và nút lưu vào layout
+
+            Scene scene = new Scene(layout, 731, 453);
+            newWordStage.setScene(scene);
+            newWordStage.show();
+        });
+        Platform.runLater(() -> {
+            saveButton.getScene().setOnKeyPressed(event -> {
+                if (event.isControlDown() && event.getCode() == KeyCode.S) {
+                    saveButton.fire();
+                    event.consume(); // tiêu thụ sự kiện để nó không lan truyền thêm
+                }
+            });
+            editButton.getScene().setOnKeyPressed(event -> {
+                if (event.isControlDown() && event.getCode() == KeyCode.E) {
+                    editButton.fire();
+                    htmledit.requestFocus();
+                    event.consume(); // tiêu thụ sự kiện để nó không lan truyền thêm
+                }
+            });
+        });
 
     }
 
