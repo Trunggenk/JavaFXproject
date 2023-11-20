@@ -10,14 +10,14 @@
    <children>
       <HBox layoutX="19.0" layoutY="129.0" prefHeight="393.0" prefWidth="830.0">
          <children>
-            <TextField prefHeight="394.0" prefWidth="394.0" />
+            <TextField fx:id="FromText" prefHeight="394.0" prefWidth="394.0" />
             <Pane prefHeight="394.0" prefWidth="29.0" />
-            <TextField fx:id="choiseAPI" prefHeight="394.0" prefWidth="403.0" />
+            <TextField fx:id="ToText" prefHeight="394.0" prefWidth="403.0" />
          </children>
       </HBox>
       <HBox layoutX="19.0" layoutY="94.0" prefHeight="33.0" prefWidth="406.0">
          <children>
-            <Button fx:id="autodectectLanguage" mnemonicParsing="false" prefHeight="34.0" prefWidth="134.0" styleClass="button-lang" stylesheets="@page2.css" text="Phát hiện ngôn ngữ" />
+            <Button fx:id="autodectectLanguage" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" styleClass="button-lang" stylesheets="@page2.css" text="Phát hiện ngôn ngữ" />
             <Button fx:id="LangFromEng" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="English" />
             <Button fx:id="LangFromViet" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="Tiếng Việt" />
          </children>
@@ -28,6 +28,6 @@
             <Button fx:id="LangToEng" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="English" />
          </children>
       </HBox>
-      <ChoiceBox layoutX="699.0" layoutY="40.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="selectAPI" layoutX="699.0" layoutY="40.0" prefWidth="150.0" />
    </children>
 </Pane>

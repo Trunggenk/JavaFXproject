@@ -29,6 +29,7 @@ public class page2 {
 
     // Biến để theo dõi nút hiện tại đã được chọn
     private Button currentSelectedButton;
+    private Button currentSelectedButtonFrom;
 
     public void initialize() {
         // List of all buttonsfrom
@@ -36,17 +37,30 @@ public class page2 {
 
         for (Button button : buttonsfrom) {
             button.setOnAction(event -> {
-                // Nếu có nút đã được chọn trước đó, loại bỏ lớp CSS từ nút đó
-                if (currentSelectedButton != null) {
-                    currentSelectedButton.getStyleClass().remove("button-lang-selected");
+                // Nếu có nút "from" đã được chọn trước
+                if (currentSelectedButtonFrom != null ) {
+                    currentSelectedButtonFrom.getStyleClass().remove("button-lang-selected");
                 }
 
-                // Thêm lớp CSS vào nút mới và cập nhật nút hiện tại đã được chọn
+                // Thêm lớp CSS vào nút mới và cập nhật nút "from" hiện tại đã được chọn
                 button.getStyleClass().add("button-lang-selected");
-                currentSelectedButton = button;
+                currentSelectedButtonFrom = button;
+
+
+                if (button == autodectectLanguage || button == LangFromEng) {
+                    LangToViet.fire();
+
+                }
+
+                // Nếu nút LangFromViet được nhấn, tự động "nhấn" nút LangToEng
+                if (button == LangFromViet) {
+                    LangToEng.fire();
+
+                }
             });
         }
 
+        // List of all buttonsto
         Button[] buttonsto = {LangToEng, LangToViet};
 
         for (Button button : buttonsto) {
