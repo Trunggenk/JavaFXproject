@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 import javafx.scene.control.Alert.AlertType;
@@ -27,6 +29,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.stream.Stream;
 
 public class page1 extends DictionaryPage {
 
@@ -51,6 +54,7 @@ public class page1 extends DictionaryPage {
         FXCollections.sort(dataList);
         ListWords.setItems(dataList);
         historyList = FXCollections.observableArrayList();
+        loadHistoryFromFile();
         viewHistory.setItems(historyList);
 
 
@@ -59,6 +63,7 @@ public class page1 extends DictionaryPage {
             if (!historyList.contains(selectedWord)) {
                 // Thêm từ vào đầu lịch sử
                 historyList.add(0, selectedWord);
+                saveHistoryToFile();
             }
             String htmlContent = dataMap.get(selectedWord);
             webdif.getEngine().loadContent(htmlContent, "text/html");
@@ -79,6 +84,7 @@ public class page1 extends DictionaryPage {
                     if (!historyList.contains(word)) {
                         // Thêm từ vào đầu lịch sử
                         historyList.add(0, word);
+                        saveHistoryToFile();
                     }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -305,6 +311,24 @@ public class page1 extends DictionaryPage {
         newWordStage.show();
     }
 
+    private void saveHistoryToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/history.txt"))) {
+            for (String word : historyList) {
+                writer.write(word);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadHistoryFromFile() {
+        try (Stream<String> stream = Files.lines(Paths.get("src/history.txt"))) {
+            stream.forEach(word -> historyList.add(word));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void searchFieldAction(KeyEvent event) {

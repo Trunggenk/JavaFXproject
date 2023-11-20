@@ -32,7 +32,7 @@ public class DictionaryController implements Initializable
     }
 
     @FXML
-    void page3(MouseEvent event) {
+    void page3(MouseEvent event) {loadPage("page3");
 
     }
 
