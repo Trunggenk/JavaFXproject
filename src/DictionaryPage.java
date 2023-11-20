@@ -29,6 +29,7 @@ public class DictionaryPage {
     protected Button removeButton;
     @FXML
     protected Button addButton;
+
     protected ObservableList<String> dataList;
     protected ObservableList<String> historyList;
     protected HashMap<String, String> dataMap;

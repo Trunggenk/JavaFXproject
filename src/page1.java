@@ -101,6 +101,10 @@ public class page1 extends DictionaryPage {
         saveButton.setOnAction(event -> saveWord());
         removeButton.setOnAction(event -> removeWord());
         addButton.setOnAction(event -> addWord());
+        GlobalData.setDataMap(dataMap);
+        GlobalData.setHistoryList(historyList);
+
+
         Platform.runLater(() -> {
 
             editButton.getScene().setOnKeyPressed(event -> {
