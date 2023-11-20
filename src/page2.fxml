@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
@@ -10,14 +10,13 @@
    <children>
       <HBox layoutX="19.0" layoutY="129.0" prefHeight="393.0" prefWidth="830.0">
          <children>
-            <TextField fx:id="FromText" prefHeight="394.0" prefWidth="394.0" />
+            <TextArea fx:id="FromText" prefHeight="394.0" prefWidth="394.0" styleClass="text-field-style" stylesheets="@page2.css" />
             <Pane prefHeight="394.0" prefWidth="29.0" />
-            <TextField fx:id="ToText" prefHeight="394.0" prefWidth="403.0" />
+            <TextArea fx:id="ToText" prefHeight="200.0" prefWidth="403.0" styleClass="text-field-style" stylesheets="@page2.css" />
          </children>
       </HBox>
       <HBox layoutX="19.0" layoutY="94.0" prefHeight="33.0" prefWidth="406.0">
          <children>
-            <Button fx:id="autodectectLanguage" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" styleClass="button-lang" stylesheets="@page2.css" text="Phát hiện ngôn ngữ" />
             <Button fx:id="LangFromEng" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="English" />
             <Button fx:id="LangFromViet" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="Tiếng Việt" />
          </children>

@@ -12,6 +12,15 @@
 }
 .button-lang-selected
 {
-    -fx-background-color : #7aa5ff; /* Màu xanh */
+    -fx-background-color : #b2c7fc; /* Màu xanh */
     -fx-underline: true;
+}
+.text-field-style
+{
+    -fx-text-indent: 50px; /* Đặt khoảng cách đầu dòng là 0px */
+    -fx-white-space: pre;
+    -fx-background-color : #ffffff; /* Màu nền */
+    -fx-text-fill: #000000; /* Màu chữ */
+    -fx-font-weight: bold; /* Độ đậm của chữ */
+    -fx-font-size: 20; /* Kích thước chữ */
 }

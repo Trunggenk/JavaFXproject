@@ -1,7 +1,11 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Task;
 
 public class page2 {
 
@@ -18,66 +22,92 @@ public class page2 {
     private Button LangToViet;
 
     @FXML
-    private Button autodectectLanguage;
+    private TextArea ToText;
     @FXML
-    private TextField ToText;
-    @FXML
-    private TextField FromText;
+    private TextArea FromText;
 
     @FXML
     private ChoiceBox<String> selectAPI;
 
-    // Biến để theo dõi nút hiện tại đã được chọn
-    private Button currentSelectedButton;
+    // Biến để theo dõi nút "from" và "to" hiện tại đã được chọn
     private Button currentSelectedButtonFrom;
+    private Button currentSelectedButtonTo;
 
     public void initialize() {
         selectAPI.getItems().addAll("Google Translate", "MemoryAPI");
         selectAPI.setValue("Google Translate"); // Tự động chọn "Google Translate"
 
-        // List of all buttonsfrom
+        // Đặt FromButton mặc định là LangFromEng và ToButton mặc định là LangToViet
+        currentSelectedButtonFrom = LangFromEng;
+        currentSelectedButtonTo = LangToViet;
+        LangFromEng.getStyleClass().add("button-lang-selected");
+        LangToViet.getStyleClass().add("button-lang-selected");
+        // Thêm sự kiện cho các nút
+        LangFromEng.setOnAction(event -> {
+            handleButtonFromClick(LangFromEng);
+            LangToViet.fire();
+        });
 
-        Button[] buttonsfrom = {LangFromEng, LangFromViet, autodectectLanguage};
+        LangFromViet.setOnAction(event -> {
+            handleButtonFromClick(LangFromViet);
+            LangToEng.fire();
+        });
 
-        for (Button button : buttonsfrom) {
-            button.setOnAction(event -> {
-                // Nếu có nút "from" đã được chọn trước
-                if (currentSelectedButtonFrom != null ) {
-                    currentSelectedButtonFrom.getStyleClass().remove("button-lang-selected");
+        LangToEng.setOnAction(event -> handleButtonToClick(LangToEng));
+        LangToViet.setOnAction(event -> handleButtonToClick(LangToViet));
+
+        // Thêm ChangeListener cho TextField FromText
+        FromText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                // Nếu TextField FromText trống, xóa nội dung của TextField ToText
+                if (newValue == null || newValue.isEmpty()) {
+                    ToText.setText("");
+                    return;
                 }
 
-                // Thêm lớp CSS vào nút mới và cập nhật nút "from" hiện tại đã được chọn
-                button.getStyleClass().add("button-lang-selected");
-                currentSelectedButtonFrom = button;
+                // Xác định ngôn ngữ nguồn và đích dựa trên nút đã được chọn
+                String langFrom = currentSelectedButtonFrom == LangFromEng ? "en" : "vi";
+                String langTo = currentSelectedButtonTo == LangToEng ? "en" : "vi";
 
+                // Tạo một Task để thực hiện việc dịch văn bản trong một thread riêng
+                Task<String> task = new Task<>() {
+                    @Override
+                    protected String call() throws Exception {
+                        // Sử dụng TranslateAPI để dịch văn bản
+                        return TranslateAPI.googleTranslate(langFrom, langTo, newValue);
+                    }
+                };
 
-                if (button == autodectectLanguage || button == LangFromEng) {
-                    LangToViet.fire();
+                // Khi Task hoàn thành, đặt kết quả dịch vào TextField ToText
+                task.setOnSucceeded(event -> {
+                    // Kiểm tra nếu FromText trống sau khi tất cả các task đã hoàn thành
+                    if (FromText.getText() == null || FromText.getText().isEmpty()) {
+                        ToText.setText("");
+                    } else {
+                        ToText.setText(task.getValue());
+                    }
+                });
 
-                }
+                // Bắt đầu thực hiện Task
+                new Thread(task).start();
+            }
+        });
+    }
 
-                // Nếu nút LangFromViet được nhấn, tự động "nhấn" nút LangToEng
-                if (button == LangFromViet) {
-                    LangToEng.fire();
-
-                }
-            });
+    private void handleButtonFromClick(Button clickedButton) {
+        if (currentSelectedButtonFrom != null) {
+            currentSelectedButtonFrom.getStyleClass().remove("button-lang-selected");
         }
+        clickedButton.getStyleClass().add("button-lang-selected");
+        currentSelectedButtonFrom = clickedButton;
+    }
 
-        // List of all buttonsto
-        Button[] buttonsto = {LangToEng, LangToViet};
-
-        for (Button button : buttonsto) {
-            button.setOnAction(event -> {
-                // Nếu có nút đã được chọn trước đó, loại bỏ lớp CSS từ nút đó
-                if (currentSelectedButton != null) {
-                    currentSelectedButton.getStyleClass().remove("button-lang-selected");
-                }
-
-                // Thêm lớp CSS vào nút mới và cập nhật nút hiện tại đã được chọn
-                button.getStyleClass().add("button-lang-selected");
-                currentSelectedButton = button;
-            });
+    private void handleButtonToClick(Button clickedButton) {
+        if (currentSelectedButtonTo != null) {
+            currentSelectedButtonTo.getStyleClass().remove("button-lang-selected");
         }
+        clickedButton.getStyleClass().add("button-lang-selected");
+        currentSelectedButtonTo = clickedButton;
     }
 }
