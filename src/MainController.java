@@ -59,6 +59,6 @@ public class MainController implements Initializable
         exit.setOnMouseClicked(event -> {
             System.exit(0);
         });
-
+        loadPage("page1");
     }
 }
