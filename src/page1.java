@@ -12,6 +12,8 @@ import javafx.scene.web.WebView;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -121,6 +123,11 @@ public class page1 extends DictionaryPage {
                 }
             });
         });
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem deleteItem = new MenuItem("Delete word");
+        deleteItem.setOnAction(event -> removeWordFromHistory());
+        contextMenu.getItems().add(deleteItem);
+        viewHistory.setContextMenu(contextMenu);
 
     }
 
@@ -250,6 +257,13 @@ public class page1 extends DictionaryPage {
             alert.setHeaderText(null);
             alert.setContentText("Xoá thành công");
             alert.showAndWait();
+        }
+    }
+    private void removeWordFromHistory() {
+        String selectedWord = viewHistory.getSelectionModel().getSelectedItem();
+        if (selectedWord != null) {
+            historyList.remove(selectedWord);
+            saveHistoryToFile();
         }
     }
 
