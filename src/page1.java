@@ -48,7 +48,7 @@ public class page1 {
     @FXML
     private Button saveButton;
     @FXML
-    private ListView<?> recent;
+    private ListView<String> viewHistory;
     @FXML
     private Button removeButton;
     @FXML
@@ -57,6 +57,7 @@ public class page1 {
     private String currentWord;
 
     private ObservableList<String> dataList;
+    private ObservableList<String> historyList;
     private HashMap<String, String> dataMap;
 
     public void initialize() {
@@ -77,12 +78,23 @@ public class page1 {
         dataList = FXCollections.observableArrayList(dataMap.keySet());
         FXCollections.sort(dataList);
         ListWords.setItems(dataList);
+        historyList = FXCollections.observableArrayList();
+        viewHistory.setItems(historyList);
 
 
         ListWords.setOnMouseClicked(event -> {
             String selectedWord = ListWords.getSelectionModel().getSelectedItem();
+            if (!historyList.contains(selectedWord)) {
+                // Thêm từ vào đầu lịch sử
+                historyList.add(0, selectedWord);
+            }
             String htmlContent = dataMap.get(selectedWord);
             webdif.getEngine().loadContent(htmlContent,"text/html");
+        });
+        viewHistory.setOnMouseClicked(event -> {
+            String selectedWord = viewHistory.getSelectionModel().getSelectedItem();
+            String htmlContent = dataMap.get(selectedWord);
+            webdif.getEngine().loadContent(htmlContent, "text/html");
         });
 
 
@@ -154,6 +166,10 @@ public class page1 {
                     currentWord= searchField.getText();
                     String htmlContent = dataMap.get(word);
                     webdif.getEngine().loadContent(htmlContent, "text/html");
+                    if (!historyList.contains(word)) {
+                        // Thêm từ vào đầu lịch sử
+                        historyList.add(0, word);
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Lỗi");
@@ -232,10 +248,35 @@ public class page1 {
                 String newWordMeaning = newWordMeaningEditor.getHtmlText();
 
                 if (newWord != null && !newWord.isEmpty() && newWordMeaning != null && !newWordMeaning.isEmpty()) {
-                    dataMap.put(newWord, newWordMeaning);
-                    dataList.add(newWord);
-                    FXCollections.sort(dataList);
-                    newWordStage.close();
+                    if (dataMap.containsKey(newWord)) {
+                        Alert alert = new Alert(AlertType.CONFIRMATION);
+                        alert.setTitle("Xác nhận");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Từ đã tồn tại. Bạn có muốn ghi đè không?");
+
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == ButtonType.OK){
+                            // Người dùng chọn ghi đè
+                            dataMap.put(newWord, newWordMeaning);
+                            dataList.remove(newWord);
+                            dataList.add(newWord);
+                            FXCollections.sort(dataList);
+                            newWordStage.close();
+                            if (!historyList.contains(newWord)) {
+                                // Thêm từ vào đầu lịch sử
+                                historyList.add(0, newWord);
+                            }
+                        } else {
+                            // Người dùng chọn không lưu
+                            // Không làm gì cả
+                        }
+                    } else {
+                        // Từ mới không tồn tại, lưu như bình thường
+                        dataMap.put(newWord, newWordMeaning);
+                        dataList.add(newWord);
+                        FXCollections.sort(dataList);
+                        newWordStage.close();
+                    }
                 } else {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Lỗi");

@@ -1,0 +1,17 @@
+.button-lang
+{
+    -fx-background-color : #ffffff;
+    -fx-text-fill: #06086e;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+}
+.button-lang:pressed
+{
+    -fx-background-color : #73A3EF;
+
+}
+.button-lang-selected
+{
+    -fx-background-color : #7aa5ff; /* Màu xanh */
+    -fx-underline: true;
+}

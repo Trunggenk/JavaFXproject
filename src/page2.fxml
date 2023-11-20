@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #131e27;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="page2">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="page2">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PAge 2" wrappingWidth="46.136688232421875">
-         <font>
-            <Font size="38.0" />
-         </font>
-      </Text>
+      <HBox layoutX="19.0" layoutY="129.0" prefHeight="393.0" prefWidth="830.0">
+         <children>
+            <TextField prefHeight="394.0" prefWidth="394.0" />
+            <Pane prefHeight="394.0" prefWidth="29.0" />
+            <TextField fx:id="choiseAPI" prefHeight="394.0" prefWidth="403.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="19.0" layoutY="94.0" prefHeight="33.0" prefWidth="406.0">
+         <children>
+            <Button fx:id="autodectectLanguage" mnemonicParsing="false" prefHeight="34.0" prefWidth="134.0" styleClass="button-lang" stylesheets="@page2.css" text="Phát hiện ngôn ngữ" />
+            <Button fx:id="LangFromEng" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="English" />
+            <Button fx:id="LangFromViet" layoutX="116.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="Tiếng Việt" />
+         </children>
+      </HBox>
+      <HBox layoutX="443.0" layoutY="94.0" prefHeight="33.0" prefWidth="406.0">
+         <children>
+            <Button fx:id="LangToViet" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="Tiếng Việt" />
+            <Button fx:id="LangToEng" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" styleClass="button-lang" stylesheets="@page2.css" text="English" />
+         </children>
+      </HBox>
+      <ChoiceBox layoutX="699.0" layoutY="40.0" prefWidth="150.0" />
    </children>
-</VBox>
+</Pane>

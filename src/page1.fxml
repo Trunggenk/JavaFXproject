@@ -31,7 +31,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="recent" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="viewHistory" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </VBox>
          </children>
