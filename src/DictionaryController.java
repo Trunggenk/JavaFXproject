@@ -7,13 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
-import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class MainController implements Initializable
+public class DictionaryController implements Initializable
 {
     @FXML
     private BorderPane Bpmain;

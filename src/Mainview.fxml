@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="Bpmain" prefHeight="638.0" prefWidth="866.0" style="-fx-background-color: ffffff;" stylesheets="@button1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<BorderPane fx:id="Bpmain" prefHeight="638.0" prefWidth="866.0" style="-fx-background-color: ffffff;" stylesheets="@button1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DictionaryController">
    <top>
       <HBox prefHeight="82.0" prefWidth="866.0" BorderPane.alignment="CENTER">
          <children>

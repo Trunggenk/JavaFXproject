@@ -13,8 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.util.*;
 
@@ -180,9 +179,37 @@ public class page1 extends DictionaryPage {
                 }
             }
         }
+    private void saveWord() {
+        String selectedWord = ListWords.getSelectionModel().getSelectedItem();
+        if (selectedWord == null) {
+            selectedWord = currentWord;
+        }
+        if (selectedWord != null) {
+            String newMeaning = htmledit.getHtmlText();
+            dataMap.put(selectedWord, newMeaning);
+            webdif.getEngine().loadContent(newMeaning, "text/html");
+            htmledit.setVisible(false);
 
+            // Call writeToFile() after saving the word
+            writeToFile();
 
-
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Sửa thành công");
+            alert.showAndWait();
+        }
+    }
+    private void writeToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/eng_vie.txt"))) {
+            for (Map.Entry<String, String> entry : dataMap.entrySet()) {
+                writer.write(entry.getKey() + "<html>" + entry.getValue());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void editWord() {
         String selectedWord = ListWords.getSelectionModel().getSelectedItem();
@@ -196,24 +223,7 @@ public class page1 extends DictionaryPage {
         }
     }
 
-    private void saveWord() {
-        String selectedWord = ListWords.getSelectionModel().getSelectedItem();
-        if (selectedWord == null) {
-            selectedWord = currentWord;
-        }
-        if (selectedWord != null) {
-            String newMeaning = htmledit.getHtmlText();
-            dataMap.put(selectedWord, newMeaning);
-            webdif.getEngine().loadContent(newMeaning, "text/html");
-            htmledit.setVisible(false);
 
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText(null);
-            alert.setContentText("Sửa thành công");
-            alert.showAndWait();
-        }
-    }
 
     private void removeWord() {
         String selectedWord = ListWords.getSelectionModel().getSelectedItem();
