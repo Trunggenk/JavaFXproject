@@ -25,14 +25,18 @@ public class page2 {
     private TextField FromText;
 
     @FXML
-    private ChoiceBox<?> selectAPI;
+    private ChoiceBox<String> selectAPI;
 
     // Biến để theo dõi nút hiện tại đã được chọn
     private Button currentSelectedButton;
     private Button currentSelectedButtonFrom;
 
     public void initialize() {
+        selectAPI.getItems().addAll("Google Translate", "MemoryAPI");
+        selectAPI.setValue("Google Translate"); // Tự động chọn "Google Translate"
+
         // List of all buttonsfrom
+
         Button[] buttonsfrom = {LangFromEng, LangFromViet, autodectectLanguage};
 
         for (Button button : buttonsfrom) {

@@ -294,16 +294,17 @@ public class page1 {
             newWordStage.show();
         });
         Platform.runLater(() -> {
-            saveButton.getScene().setOnKeyPressed(event -> {
-                if (event.isControlDown() && event.getCode() == KeyCode.S) {
-                    saveButton.fire();
-                    event.consume(); // tiêu thụ sự kiện để nó không lan truyền thêm
-                }
-            });
+
             editButton.getScene().setOnKeyPressed(event -> {
                 if (event.isControlDown() && event.getCode() == KeyCode.E) {
                     editButton.fire();
                     htmledit.requestFocus();
+                    event.consume(); // tiêu thụ sự kiện để nó không lan truyền thêm
+                }
+            });
+            saveButton.getScene().setOnKeyPressed(event -> {
+                if (event.isControlDown() && event.getCode() == KeyCode.S) {
+                    saveButton.fire();
                     event.consume(); // tiêu thụ sự kiện để nó không lan truyền thêm
                 }
             });
