@@ -33,6 +33,9 @@ public class FlashcardController {
 
     private List<Flashcard> cards = new ArrayList<>();
 
+    /**
+     * start.
+     */
     public void initialize() {
         addAllfromhistory.setOnAction(event -> addAllFromHistory());
         addButton.setOnAction(event -> addCard());
@@ -40,6 +43,9 @@ public class FlashcardController {
 
     }
 
+    /**
+     * add all words from history.
+     */
     private void addAllFromHistory() {
         HashMap<String, String> dataMap = GlobalData.getDataMap();
         List<String> history = readHistoryFromFile();
@@ -54,6 +60,9 @@ public class FlashcardController {
         updateListView();
     }
 
+    /**
+     * add card.
+     */
     private void addCard() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Card");
@@ -70,6 +79,9 @@ public class FlashcardController {
         }
     }
 
+    /**
+     * update the list.
+     */
     private void updateListView() {
         ObservableList<String> observableList = FXCollections.observableArrayList();
         for (Flashcard card : cards) {
@@ -78,6 +90,10 @@ public class FlashcardController {
         ListOfCard.setItems(observableList);
     }
 
+    /**
+     * read history from file.
+     * @return
+     */
     private List<String> readHistoryFromFile() {
         List<String> history = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("src/history.txt"))) {
@@ -90,6 +106,10 @@ public class FlashcardController {
         }
         return history;
     }
+
+    /**
+     * learn.
+     */
     private void startLearning() {
         if (cards.isEmpty()) {
             return;
@@ -139,6 +159,10 @@ public class FlashcardController {
         currentCardIndex++;
     }
 
+    /**
+     * soundUS.
+     * @param selectedWord word
+     */
     private void playSoundUS(String selectedWord) {
 
         if (selectedWord != null) {
