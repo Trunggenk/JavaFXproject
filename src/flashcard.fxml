@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="866.0" style="-fx-background-color: f2f2f2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FlashcardController">
+   <children>
+      <Text layoutX="69.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FLASHCARD" wrappingWidth="198.13670349121094">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Label layoutX="634.0" layoutY="42.0" prefHeight="41.0" prefWidth="112.0" stylesheets="@flashcard.css" text="Add card">
+         <graphic>
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" stylesheets="@flashcard.css" />
+         </graphic>
+      </Label>
+      <Label layoutX="634.0" layoutY="83.0" prefHeight="41.0" prefWidth="186.0" stylesheets="@flashcard.css" text="Add all from history">
+         <graphic>
+            <Button fx:id="addAllfromhistory" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" stylesheets="@flashcard.css" />
+         </graphic>
+      </Label>
+      <ListView fx:id="ListOfCard" layoutX="120.0" layoutY="135.0" prefHeight="346.0" prefWidth="626.0" />
+      <Button fx:id="start" layoutX="407.0" layoutY="499.0" mnemonicParsing="false" text="START" />
+   </children>
+</Pane>

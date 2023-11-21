@@ -1,0 +1,10 @@
+.label
+{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+.button
+{
+    -fx-background-image: url('add.png');
+
+}
