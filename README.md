@@ -11,9 +11,9 @@
 
 ## Cài đặt
 
-JAVAFX: version SDK 17.
-JAVA: azul SDK 17.0.9
-VM option for DictionaryApplication.java : --module-path "javafx-sdk-17.0.9/lib" --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls,javafx.web
+- JAVAFX: version SDK 17.
+- JAVA: azul SDK 17.0.9.
+- VM option for DictionaryApplication.java : --module-path "javafx-sdk-17.0.9/lib" --add-modules javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls,javafx.web
 ## Cải tiến tương lai
 - Thêm hỗ trợ cho các ngôn ngữ khác.
 - Thêm tính năng lưu tiến trình học của phiên học.
@@ -21,5 +21,5 @@ VM option for DictionaryApplication.java : --module-path "javafx-sdk-17.0.9/lib"
 
 ## Đóng góp
 
-22028170: Tống Quang Trung
-22028032: Nguyễn Khôi Nguyên
+- 22028170: Tống Quang Trung
+- 22028032: Nguyễn Khôi Nguyên
