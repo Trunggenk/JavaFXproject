@@ -91,7 +91,7 @@ public class page2 extends DictionaryPage {
             @Override
             protected String call() throws Exception {
                 // Sử dụng TranslateAPI để dịch văn bản
-                return TranslateAPI.googleTranslate(langFrom, langTo, newValue);
+                return TranslateAPI.translate(langFrom, langTo, newValue);
             }
         };
 
